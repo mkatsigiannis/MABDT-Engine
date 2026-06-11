@@ -1,0 +1,35 @@
+{
+    "_comment_mqtt": "MQTT broker to receive llm/question and publish llm/answer",
+    "mqtt": {
+        "host": "localhost",
+        "port": 1883,
+        "topics": {
+            "question": "llm/question",
+            "answer": "llm/answer"
+        }
+    },
+
+    "_comment_ollama": "Local Ollama daemon serving the LLM",
+    "ollama": {
+        "model": "gpt-oss:20b",
+        "host": "localhost",
+        "port": 11434,
+        "temperature": 0.7
+    },
+
+    "_comment_service": "Service metadata for logs",
+    "service": {
+        "name": "Tiger Motors LLM Service",
+        "log_level": "INFO"
+    },
+
+    "_comment_tiger_motors": "Deployment-specific behavior toggles",
+    "tiger_motors": {
+        "enable_rag": true,
+        "max_response_length": 2048,
+        "remove_think_tags": true
+    },
+
+    "_comment_note1": "Copy this file to llm_service_config.json and edit for your environment.",
+    "_comment_note2": "llm_service_config.json is gitignored so local lab IPs do not get committed."
+}

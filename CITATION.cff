@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+title: "mabdt: Multi-Agent-Based Digital Twin Engine"
+message: >-
+  If you use this software, please cite both the software itself and the
+  journal paper describing the engine architecture.
+type: software
+authors:
+  - given-names: Michail
+    family-names: Katsigiannis
+    email: mzk0145@auburn.edu
+    affiliation: "Auburn University"
+repository-code: "https://github.com/mkatsigiannis/MABDT-Engine"
+license: MIT
+version: 0.1.0
+date-released: "2026-06-10"
+keywords:
+  - digital twin
+  - multi-agent systems
+  - manufacturing
+  - hybrid simulation
+  - industrial IoT
+
+preferred-citation:
+  type: article
+  title: >-
+    A Multi-Agent-Based Digital Twin Engine for Manufacturing Operations
+  authors:
+    - given-names: Michail
+      family-names: Katsigiannis
+  journal: "Journal of Intelligent Manufacturing"
+  year: 2026
+  notes: "Under review"
+
+references:
+  - type: thesis
+    title: >-
+      Digitalizing Assembly Operations Using Hybrid Simulation Techniques and
+      Digital Twin Technologies
+    authors:
+      - given-names: Michail
+        family-names: Katsigiannis
+    institution:
+      name: "Auburn University"
+    year: 2026
+    thesis-type: "PhD dissertation"

@@ -1,0 +1,65 @@
+# Python cache files and folders
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# IDE settings and configuration
+.vscode/settings.json
+.idea/
+.cursor/
+.claude/
+
+# Test and coverage files
+.coverage
+.pytest_cache/
+htmlcov/
+.tox/
+
+# Log files
+*.log
+llm_service.log
+
+# Deployment-specific configs (lab IPs, broker creds). Ship config_template.json
+# and llm_service/llm_service_config_template.json instead.
+config.json
+llm_service/llm_service_config.json
+tiger_motors_dt/llm_service/llm_service_config.json
+
+# Performance and diagnostic files
+performance_verification_report.txt
+
+# Data and diagrams (temporary exports)
+diagrams_and_data/*.xlsx
+diagrams_and_data/temp/
+
+# Legacy files directory (archived old files)
+legacy/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific temp files
+*.backup
+*.orig
+test_standalone_build.bat
+DEPLOYMENT_GUIDE.md
+STANDALONE_BUILD_SUMMARY.md
+TESTING_CHECKLIST.md
+
+# Build artifacts (the PyInstaller-based standalone build was deleted in
+# Phase 6; these patterns stay to catch any future build leftover)
+/build/
+/dist/

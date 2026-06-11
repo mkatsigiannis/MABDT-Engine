@@ -1,0 +1,9 @@
+results/*.csv
+results/*.png
+results/*.log
+!results/.gitkeep
+
+# Local-only snapshots saved by `cp bench/results/* bench/results/archive/<name>/`.
+# Kept out of the repo because the latency CSVs are large; promote individual
+# files out of the archive if a specific run needs to be checked in.
+results/archive/

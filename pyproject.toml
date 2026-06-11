@@ -1,0 +1,137 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mabdt"
+version = "0.1.0"
+description = "Multi-Agent-Based Digital Twin Engine for manufacturing operations"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Michail Katsigiannis", email = "mzk0145@auburn.edu" },
+]
+keywords = [
+    "digital-twin",
+    "multi-agent",
+    "manufacturing",
+    "simulation",
+    "iot",
+    "mqtt",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "paho-mqtt>=2.0",
+    "transitions>=0.9",
+]
+
+[project.optional-dependencies]
+# Tiger Motors GUI dependencies
+gui = [
+    "PySide6>=6.9",
+]
+# LLM/RAG integration
+llm = [
+    "ollama>=0.1",
+]
+# OPC UA bridge for PLC integration
+opc = [
+    "opcua>=0.98",
+]
+# Scanner service (Zeroconf + Excel logging)
+scanner = [
+    "openpyxl>=3.1",
+    "zeroconf>=0.135",
+]
+# Numeric analysis + plotting
+analysis = [
+    "numpy>=2.0",
+    "matplotlib>=3.10",
+    "psutil>=5.9",
+]
+# Convenience: everything needed to run the Tiger Motors deployment
+tiger = [
+    "PySide6>=6.9",
+    "ollama>=0.1",
+    "opcua>=0.98",
+    "openpyxl>=3.1",
+    "zeroconf>=0.135",
+    "numpy>=2.0",
+    "matplotlib>=3.10",
+    "psutil>=5.9",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-timeout>=2.1",
+    # Lint tools are pinned to exact versions so a formatter release
+    # doesn't fail CI on an unrelated PR. Keep in sync with
+    # .github/workflows/ci.yml.
+    "black==25.1.0",
+    "ruff==0.11.9",
+]
+
+[project.urls]
+Homepage = "https://github.com/mkatsigiannis/MABDT-Engine"
+Repository = "https://github.com/mkatsigiannis/MABDT-Engine"
+
+# No `[project.scripts]` and no PyPI release. This repo is a code-release
+# companion to the JIM paper and dissertation, used via
+# `git clone` + `pip install -e ".[tiger,dev]"`. Launch the deployment
+# scripts directly from the checkout: `python gui_main.py`,
+# `python cli_main.py`, or `python -m examples.toy_line.main`.
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mabdt*", "tiger_motors_dt*"]
+exclude = [
+    "tests*",
+    "examples*",
+    "legacy*",
+    "build*",
+    "dist*",
+    ".venv*",
+    "diagrams_and_data*",
+]
+
+[tool.setuptools.package-data]
+mabdt = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+timeout = 30
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "SIM"]
+ignore = [
+    "E501",   # line length handled by formatter
+    "E402",   # module-level imports not at top — needed for sys.path bootstrap, matplotlib backend, optional deps
+    "E731",   # lambda assignment — short callbacks read fine as lambdas
+    "UP038",  # isinstance(x, (A, B)) is universally accepted; the union form is purely cosmetic
+    "SIM102", # collapsing nested ifs sometimes hurts readability
+    "SIM105", # contextlib.suppress vs try/except: pass — the latter is often clearer
+    "SIM108", # if/else vs ternary — left to author judgment
+    "SIM115", # use context manager — false positives for long-lived handles (handled per-site with noqa)
+    "SIM118", # `key in dict.keys()` is sometimes clearer than `key in dict`
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]

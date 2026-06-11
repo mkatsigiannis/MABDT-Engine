@@ -1,0 +1,22 @@
+# Tiger Motors LLM Service Requirements
+# Install with: pip install -r requirements_llm_service.txt
+
+# Core dependencies
+ollama>=0.1.0
+paho-mqtt>=1.6.0
+
+# Configuration and CLI
+argparse  # Built-in, but listed for documentation
+
+# Logging (built-in modules)
+# logging
+# logging.handlers
+
+# JSON handling (built-in)
+# json
+
+# Optional: For enhanced MQTT features
+# paho-mqtt[tls]>=1.6.0  # Uncomment for TLS support
+
+# Development and testing
+pytest>=7.0.0  # For running tests 

@@ -1,0 +1,146 @@
+Tiger Motors Digital Twin - Quick Start (Building from Source)
+================================================================
+
+This document explains how to build the standalone Windows application
+from a fresh checkout. For end-user documentation about the built
+application, see README_STANDALONE.txt.
+
+
+Prerequisites
+-------------
+- Windows 10 or later (the build script is Windows-specific; PyInstaller
+  itself runs on Linux/macOS but the .bat helper is Windows)
+- Python 3.10+ on PATH
+- Git (optional — used by the build script to stamp the commit SHA
+  into version.txt)
+
+
+One-time setup
+--------------
+
+1. Clone or copy the repository to a working directory:
+
+       git clone <repo-url> TigerMotorsDTPython
+       cd TigerMotorsDTPython
+
+2. Create the virtual environment and install the editable Tiger deployment:
+
+       python -m venv .venv
+       .venv\Scripts\activate
+       pip install -e ".[tiger]"
+
+3. Create a local config.json by copying the template:
+
+       copy config_template.json config.json
+
+   Then edit config.json to set the MQTT broker IP (defaults are
+   localhost). The live config.json is gitignored so each developer's
+   broker IP stays local.
+
+
+Build the standalone
+--------------------
+
+Run the build script from the repo root:
+
+    scripts\windows_build\build_standalone.bat
+
+Or double-click it inside scripts\windows_build\ — either works. The
+script moves to the repo root automatically so paths resolve
+consistently.
+
+The script:
+
+  1. Verifies Python is on PATH.
+  2. Activates the .venv.
+  3. Installs PyInstaller if it's missing.
+  4. Cleans previous build/ and dist/TigerMotorsDT/ directories.
+  5. Runs `pyinstaller scripts\windows_build\TigerMotorsDT.spec --clean --noconfirm`.
+  6. Copies config.json + LLM service config + helper files into the
+     dist/TigerMotorsDT/ folder.
+  7. Writes version.txt with the Python version, build timestamp, and
+     git commit SHA.
+
+When it finishes, the standalone application lives at:
+
+    dist\TigerMotorsDT\TigerMotorsDT.exe
+
+The whole dist\TigerMotorsDT\ folder is portable — copy it to any
+Windows machine and double-click the .exe to run.
+
+
+What's inside the spec
+----------------------
+
+`scripts\windows_build\TigerMotorsDT.spec` is the PyInstaller configuration. It lists:
+
+- Data files (config.json + templates, llm_service config, the
+  diagrams_and_data log destination).
+- Hidden imports — the explicit list of every `mabdt.*` and
+  `tiger_motors_dt.*` submodule plus the third-party libraries the
+  app uses (paho-mqtt, opcua, transitions, PySide6, matplotlib, ...).
+  PyInstaller's static analysis misses some of these when they're
+  imported lazily (e.g. matplotlib backends, OPC UA subscription
+  internals).
+- Excluded modules — pytest, jupyter, alternative GUI frameworks,
+  unused matplotlib backends. Shrinks the dist folder.
+
+If you add a new module under `tiger_motors_dt/` or pull in a new
+third-party dep, add it to the hiddenimports list in the .spec before
+re-running the build.
+
+
+Common issues
+-------------
+
+- "ModuleNotFoundError" when the built .exe starts:
+  A hidden import is missing. Add it to the hiddenimports list in
+  scripts\windows_build\TigerMotorsDT.spec and rebuild.
+
+- "config.json not found" warning during build:
+  config.json is gitignored. Copy config_template.json -> config.json
+  and edit it before building.
+
+- "QtCore.QXmlStreamReader" or similar runtime errors:
+  PySide6 plugin not bundled. Try a clean rebuild
+  (`build_standalone.bat` already does --clean).
+
+- Long build times:
+  PyInstaller's first run analyzes the full dependency tree. Subsequent
+  runs use cached analysis and are faster. UPX compression (enabled in
+  the spec) adds 30-60 s per build.
+
+
+After the build
+---------------
+
+1. Smoke-test the .exe locally:
+
+       cd dist\TigerMotorsDT
+       TigerMotorsDT.exe
+
+   The GUI should open and report "Initializing..." in the status bar.
+
+2. Run create_shortcut.vbs to drop a desktop shortcut on the build
+   machine.
+
+3. Copy dist\TigerMotorsDT\ to the lab machine. The .exe is the entry
+   point; everything next to it is a runtime asset.
+
+4. On the lab machine, edit dist\TigerMotorsDT\config.json to match
+   the lab's broker IP and run the .exe.
+
+
+Build artifact versioning
+-------------------------
+
+The build script writes dist\TigerMotorsDT\version.txt with:
+
+    Tiger Motors Digital Twin - Standalone Edition
+    Build Date: <timestamp>
+    Python Version: <python --version>
+    Git Commit: <abbreviated SHA>
+
+When debugging a deployment problem in the lab, ask which version.txt
+the operator is running. The git SHA pins the source the binary was
+built from.

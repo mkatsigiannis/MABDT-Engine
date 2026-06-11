@@ -1,0 +1,119 @@
+{
+  "_comment_facility": "=== FACILITY CONFIGURATION ===",
+  "_comment_facility_desc": "Define the physical layout of your manufacturing facility",
+  "facility": {
+    "cells": 3,
+    "_comment_cells": "Number of production cells in the facility",
+    "total_workstations": 15,
+    "_comment_total_workstations": "Total number of workstations across all cells",
+    "workstations_per_cell": 5,
+    "_comment_workstations_per_cell": "Number of workstations in each cell"
+  },
+  
+  "_comment_mqtt": "=== MQTT BROKER CONFIGURATION ===",
+  "_comment_mqtt_desc": "Configure connection to your MQTT broker (running in Docker)",
+  "mqtt": {
+    "host": "localhost",
+    "_comment_host": "IP address of your MQTT broker (change this to match your setup)",
+    "port": 8883,
+    "_comment_port": "MQTT broker port (default: 1883 for non-SSL, 8883 for SSL)",
+    "keepalive": 60,
+    "_comment_keepalive": "Keep-alive interval in seconds",
+    "username": null,
+    "_comment_username": "MQTT username (null if no authentication required)",
+    "password": null,
+    "_comment_password": "MQTT password (null if no authentication required)"
+  },
+  
+  "_comment_barcode": "=== BARCODE SCANNER SERVICE ===",
+  "_comment_barcode_desc": "Configure the barcode scanner service integration",
+  "barcode_scanner_service": {
+    "enabled": true,
+    "_comment_enabled": "Enable/disable barcode scanner service",
+    "host": "localhost",
+    "_comment_host": "IP address of barcode scanner service (usually same as MQTT broker)",
+    "port": 8883,
+    "_comment_port": "Port for barcode scanner service",
+    "service_name": "BarcodeScanner",
+    "_comment_service_name": "Zeroconf service name for discovery",
+    "service_type": "_scanner._tcp.local.",
+    "_comment_service_type": "Zeroconf service type",
+    "log_directory": "diagrams_and_data",
+    "_comment_log_directory": "Directory where Excel logs will be saved",
+    "log_all_topics": true,
+    "_comment_log_all_topics": "Log all MQTT topics to Excel",
+    "auto_start": true,
+    "_comment_auto_start": "Automatically start service when application launches"
+  },
+  
+  "_comment_opc_ua": "=== OPC UA SERVICE (PLC INTEGRATION) ===",
+  "_comment_opc_ua_desc": "Configure OPC UA connection to KepServerEX for PLC data",
+  "opc_ua_service": {
+    "enabled": true,
+    "_comment_enabled": "Enable/disable OPC UA service",
+    "opc_server_url": "opc.tcp://localhost:49320",
+    "_comment_opc_server_url": "OPC UA server URL (KepServerEX endpoint)",
+    "mqtt_host": "localhost",
+    "_comment_mqtt_host": "MQTT broker IP for publishing PLC data",
+    "mqtt_port": 8883,
+    "_comment_mqtt_port": "MQTT broker port",
+    "subscription_interval": 150,
+    "_comment_subscription_interval": "OPC UA subscription interval in milliseconds",
+    "reconnect_delay": 5,
+    "_comment_reconnect_delay": "Initial reconnection delay in seconds",
+    "max_reconnect_delay": 60,
+    "_comment_max_reconnect_delay": "Maximum reconnection delay in seconds",
+    "auto_start": true,
+    "_comment_auto_start": "Automatically start service when application launches"
+  },
+  
+  "_comment_performance": "=== PERFORMANCE TUNING ===",
+  "_comment_performance_desc": "Adjust these values to optimize performance",
+  "performance": {
+    "agent_inbox_timeout": 0.1,
+    "_comment_agent_inbox_timeout": "Agent message processing timeout in seconds",
+    "eventbus_tick_interval": 0.01,
+    "_comment_eventbus_tick_interval": "Event bus tick interval in seconds",
+    "gui_update_interval": 0.05,
+    "_comment_gui_update_interval": "GUI refresh interval in seconds",
+    "state_stability_delay": 0.005,
+    "_comment_state_stability_delay": "State stability check delay in seconds"
+  },
+  
+  "_comment_production": "=== PRODUCTION TARGETS ===",
+  "_comment_production_desc": "Define production cycle time and takt time targets",
+  "production": {
+    "target_cycle_time": 60,
+    "_comment_target_cycle_time": "Target cycle time per workstation in seconds",
+    "target_takt_time": 75,
+    "_comment_target_takt_time": "Target takt time (customer demand rate) in seconds"
+  },
+  
+  "_comment_topics": "=== MQTT TOPIC CONFIGURATION ===",
+  "_comment_topics_desc": "Define MQTT topic names for different data streams",
+  "topics": {
+    "inspection_station": "scanner/InspectionStation",
+    "_comment_inspection_station": "Topic for inspection station barcode scans",
+    "led_prefix": "leds/",
+    "_comment_led_prefix": "Prefix for LED control topics",
+    "plc_prefix": "plc/",
+    "_comment_plc_prefix": "Prefix for PLC data topics",
+    "production_start": "production_start",
+    "_comment_production_start": "Topic to trigger production start",
+    "scanner_prefix": "scanner/",
+    "_comment_scanner_prefix": "Prefix for barcode scanner topics",
+    "ws_cycle_time_prefix": "ws_cycle_time/",
+    "_comment_ws_cycle_time_prefix": "Prefix for workstation cycle time topics",
+    "inspection_pass_fail": "inspection_pass_fail",
+    "_comment_inspection_pass_fail": "Topic for inspection pass/fail results",
+    "inspection_faults": "inspection_faults",
+    "_comment_inspection_faults": "Topic for inspection fault details"
+  },
+  
+  "_comment_footer": "=== CONFIGURATION NOTES ===",
+  "_comment_note1": "Lines starting with '_comment' are ignored by the application",
+  "_comment_note2": "After editing, save this file and restart the application",
+  "_comment_note3": "Make sure your Docker services (MQTT, Node-RED, InfluxDB, Grafana) are running",
+  "_comment_note4": "IP addresses must match your network configuration"
+}
+
