@@ -1,7 +1,58 @@
-# MABDT Engine
+Metadata-Version: 2.4
+Name: mabdt
+Version: 0.1.0
+Summary: Multi-Agent-Based Digital Twin Engine for manufacturing operations
+Author-email: Michail Katsigiannis <mzk0145@auburn.edu>
+License: MIT
+Project-URL: Homepage, https://github.com/mkatsigiannis/MABDT-Engine
+Project-URL: Repository, https://github.com/mkatsigiannis/MABDT-Engine
+Keywords: digital-twin,multi-agent,manufacturing,simulation,iot,mqtt
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: paho-mqtt>=2.0
+Requires-Dist: transitions>=0.9
+Provides-Extra: gui
+Requires-Dist: PySide6>=6.9; extra == "gui"
+Provides-Extra: llm
+Requires-Dist: ollama>=0.1; extra == "llm"
+Provides-Extra: opc
+Requires-Dist: opcua>=0.98; extra == "opc"
+Provides-Extra: scanner
+Requires-Dist: openpyxl>=3.1; extra == "scanner"
+Requires-Dist: zeroconf>=0.135; extra == "scanner"
+Provides-Extra: analysis
+Requires-Dist: numpy>=2.0; extra == "analysis"
+Requires-Dist: matplotlib>=3.10; extra == "analysis"
+Requires-Dist: psutil>=5.9; extra == "analysis"
+Provides-Extra: tiger
+Requires-Dist: PySide6>=6.9; extra == "tiger"
+Requires-Dist: ollama>=0.1; extra == "tiger"
+Requires-Dist: opcua>=0.98; extra == "tiger"
+Requires-Dist: openpyxl>=3.1; extra == "tiger"
+Requires-Dist: zeroconf>=0.135; extra == "tiger"
+Requires-Dist: numpy>=2.0; extra == "tiger"
+Requires-Dist: matplotlib>=3.10; extra == "tiger"
+Requires-Dist: psutil>=5.9; extra == "tiger"
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-timeout>=2.1; extra == "dev"
+Requires-Dist: black==25.1.0; extra == "dev"
+Requires-Dist: ruff==0.11.9; extra == "dev"
+Dynamic: license-file
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20635788.svg)](https://doi.org/10.5281/zenodo.20635788)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+# Tiger Motors Digital Twin
 
 This repository contains a Multi-Agent-Based Digital Twin (MABDT) engine and
 a reference deployment for the Tiger Motors lab at Auburn University. It is
@@ -136,8 +187,7 @@ A local MQTT broker on the configured host/port is required.
 
 ## Cite
 
-If you use this engine, please cite the paper, the dissertation, and the
-software release:
+If you use this engine, please cite the paper and the dissertation:
 
 ```bibtex
 @article{katsigiannis2026jim,
@@ -153,16 +203,6 @@ software release:
   author = {Katsigiannis, Michail},
   school = {Auburn University},
   year   = {2026}
-}
-
-@software{katsigiannis2026mabdt,
-  title   = {{MABDT Engine}: A Multi-Agent-Based Digital Twin Engine for Manufacturing Operations},
-  author  = {Katsigiannis, Michail},
-  year    = {2026},
-  version = {0.1.0},
-  doi     = {10.5281/zenodo.20635788},
-  url     = {https://github.com/mkatsigiannis/MABDT-Engine},
-  license = {MIT}
 }
 ```
 
