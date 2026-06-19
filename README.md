@@ -1,6 +1,6 @@
 # MABDT Engine
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20635788.svg)](https://doi.org/10.5281/zenodo.20635788)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20755232.svg)](https://doi.org/10.5281/zenodo.20755232)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 This repository contains a Multi-Agent-Based Digital Twin (MABDT) engine and
@@ -160,7 +160,7 @@ software release:
   author  = {Katsigiannis, Michail},
   year    = {2026},
   version = {0.1.0},
-  doi     = {10.5281/zenodo.20635788},
+  doi     = {10.5281/zenodo.20755232},
   url     = {https://github.com/mkatsigiannis/MABDT-Engine},
   license = {MIT}
 }

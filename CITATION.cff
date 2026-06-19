@@ -15,7 +15,7 @@ version: 0.1.0
 date-released: "2026-06-10"
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.20635788
+    value: 10.5281/zenodo.20755232
     description: "Zenodo archive of the v0.1.0 release"
 keywords:
   - digital twin
