@@ -6,7 +6,7 @@
 This repository contains a Multi-Agent-Based Digital Twin (MABDT) engine and
 a reference deployment for the Tiger Motors lab at Auburn University. It is
 the companion artifact to the dissertation *Digitalizing Assembly Operations
-Using Hybrid Simulation Techniques and Digital Twin Technologies*
+Using Agent-Based Modeling Techniques and Digital Twin Technologies*
 (Katsigiannis, 2026) and the paper submitted to the *Journal of Intelligent
 Manufacturing*.
 
@@ -19,7 +19,7 @@ The repository is split into two Python packages:
   15 workstations across 3 cells, three barcode-driven topic processors,
   PySide6 GUI, OPC UA bridge, LLM chat.
 
-A 150-line toy deployment in `examples/toy_line/` shows how to use `mabdt`
+A ~250-line toy deployment in `examples/toy_line/` shows how to use `mabdt`
 end-to-end without a broker or GUI. Read that file first if you want to
 build your own deployment.
 
@@ -141,15 +141,15 @@ software release:
 
 ```bibtex
 @article{katsigiannis2026jim,
-  title   = {A Multi-Agent-Based Digital Twin Engine for Manufacturing Operations},
-  author  = {Katsigiannis, Michail},
+  title   = {Multi-Agent-Based Digital Twin Engine for Manufacturing Operations},
+  author  = {Katsigiannis, Michail and Mykoniatis, Konstantinos},
   journal = {Journal of Intelligent Manufacturing},
   year    = {2026},
   note    = {Under review}
 }
 
 @phdthesis{katsigiannis2026phd,
-  title  = {Digitalizing Assembly Operations Using Hybrid Simulation Techniques and Digital Twin Technologies},
+  title  = {Digitalizing Assembly Operations Using Agent-Based Modeling Techniques and Digital Twin Technologies},
   author = {Katsigiannis, Michail},
   school = {Auburn University},
   year   = {2026}

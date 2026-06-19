@@ -7,7 +7,7 @@ no MQTT broker — the InMemoryProtocol stands in for the physical layer.
 
 Reading this file top-to-bottom is the recommended introduction to
 building a new deployment on mabdt. The shape mirrors the Tiger Motors
-deployment in this repository but at ~150 lines instead of ~2,000.
+deployment in this repository but at ~250 lines instead of ~2,000.
 
 Run with:
 

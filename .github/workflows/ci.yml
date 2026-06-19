@@ -27,10 +27,10 @@ jobs:
           pip install ruff==0.11.9 black==25.1.0
 
       - name: ruff check
-        run: ruff check mabdt tiger_motors_dt tests examples bench
+        run: ruff check .
 
       - name: black --check
-        run: black --check mabdt tiger_motors_dt tests examples bench
+        run: black --check .
 
   test:
     name: Tests (${{ matrix.os }}, Python ${{ matrix.python-version }})

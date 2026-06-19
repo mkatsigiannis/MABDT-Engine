@@ -1,7 +1,7 @@
 # Architecture
 
 This document maps the code in `mabdt/` and `tiger_motors_dt/` to the four
-engine components defined in *A Multi-Agent-Based Digital Twin Engine for
+engine components defined in *Multi-Agent-Based Digital Twin Engine for
 Manufacturing Operations* (Katsigiannis, JIM, under review). Read it
 alongside [`../examples/toy_line/main.py`](../examples/toy_line/main.py),
 which exercises every concept here at minimal scale.

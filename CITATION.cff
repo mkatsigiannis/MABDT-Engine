@@ -27,10 +27,12 @@ keywords:
 preferred-citation:
   type: article
   title: >-
-    A Multi-Agent-Based Digital Twin Engine for Manufacturing Operations
+    Multi-Agent-Based Digital Twin Engine for Manufacturing Operations
   authors:
     - given-names: Michail
       family-names: Katsigiannis
+    - given-names: Konstantinos
+      family-names: Mykoniatis
   journal: "Journal of Intelligent Manufacturing"
   year: 2026
   notes: "Under review"
@@ -38,7 +40,7 @@ preferred-citation:
 references:
   - type: thesis
     title: >-
-      Digitalizing Assembly Operations Using Hybrid Simulation Techniques and
+      Digitalizing Assembly Operations Using Agent-Based Modeling Techniques and
       Digital Twin Technologies
     authors:
       - given-names: Michail
