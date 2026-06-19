@@ -1,10 +1,10 @@
 # Contributing
 
 Thanks for taking the time. This repository is the companion artifact
-to a journal paper and a dissertation, so the bar isn't "ship it and
-iterate" — it's "the next reader can trust this." That mostly means:
-keep the engine boundary intact, keep tests green, and write changes a
-reviewer can grasp without context.
+to a journal paper and a dissertation, so changes are held to a high
+bar, where the next reader should be able to trust the code. In practice
+that means keeping the engine boundary intact, keeping tests green, and
+writing changes a reviewer can grasp without context.
 
 ## Setting up
 
@@ -21,7 +21,7 @@ you want to launch the GUI or the LLM service locally.
 
 ## Running the checks locally
 
-Run the same checks CI runs before pushing — saves a round trip:
+Running the same checks CI runs before you push saves a round trip:
 
 ```
 pytest                                          # 81 tests, ~20 s
@@ -48,9 +48,9 @@ the matrix is fast.
 - Branch from the published default branch and open the PR against it.
 - One commit per logical change. Bundling unrelated edits into one
   commit makes bisect useless.
-- Commit messages: first line is a short imperative sentence; the
-  body explains the **why**, not the **what** (the diff already shows
-  the what).
+- Commit messages: the first line is a short imperative sentence. The
+  body explains why the change was made, since the diff already shows
+  what changed.
 - Don't include `Co-Authored-By:` lines unless you're recording a real
   human pair-programming contribution.
 
@@ -103,8 +103,8 @@ debug panel). New widgets do not get to add new escape hatches.
   sentences** describing what the thing is for. No "Key Features:"
   bullets, no "Design Principles:" headers, no auto-generated tool
   signatures.
-- Inline comments explain *why*, not *what*. The diff already shows
-  what. Comments rot, code doesn't.
+- Inline comments explain *why*, not *what*, and stay close to the code
+  they describe so they do not drift out of date.
 - Type hints use PEP 604 syntax (`int | None`, not `Optional[int]`).
 - Exception re-raises in `except` blocks use `raise ... from e` so the
   chain is preserved.
