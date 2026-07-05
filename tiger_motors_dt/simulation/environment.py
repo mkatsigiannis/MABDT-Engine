@@ -2,11 +2,11 @@
 
 A `mabdt.Environment` subclass that declares the deployment's agent
 populations and the communication agent. Driven entirely by the
-declarative API the JIM paper presents in §3.1:
+declarative API the JIM paper presents in the "Simulation Environment" section:
 
   - workstations: a static population (15 agents, IDs from config)
   - inspection_station: a singleton
-  - cars: dynamic agents created at runtime by BarcodeProcessor (§3.1 C14);
+  - cars: dynamic agents created at runtime by BarcodeProcessor;
     kept as a plain dict on the environment because they have no fixed ID
     set declared up front
 
@@ -65,7 +65,8 @@ class TigerMotorsEnvironment(_MABDTEnvironment):
 
         super().__init__(config=config, bus=bus)
 
-        # Dynamic-agent dict (JIM §3.1 C14: agents created by the
+        # Dynamic-agent dict (JIM paper, "Simulation Environment" section:
+        # agents created at runtime by the
         # CommunicationAgent at runtime). Mutated by BarcodeProcessor.
         self.cars: dict[str, CarAgent] = {}
 
@@ -128,7 +129,7 @@ class TigerMotorsEnvironment(_MABDTEnvironment):
 
         Sets `self.workstations` / `self.inspection_station` as views over
         the mabdt-managed population and singleton, and exposes the env on
-        the shared lookup table (JIM §3.2 C24) so DT agents that need
+        the event bus's shared lookup table so DT agents that need
         `tracking_production` or cell-completion counters can read it.
         """
         super().initialize()

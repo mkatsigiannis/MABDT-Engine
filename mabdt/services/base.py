@@ -5,7 +5,7 @@ code can manage it uniformly alongside the engine. Using a Protocol (rather
 than an ABC) lets services inherit from framework bases like PySide6.QObject
 without diamond-MRO problems.
 
-Typical service responsibilities (JIM §3.2):
+Typical service responsibilities (JIM paper: "Independent Services" subsection):
   - manage its own configuration
   - manage its own connection to the broker
   - manage reconnect logic when the upstream link drops

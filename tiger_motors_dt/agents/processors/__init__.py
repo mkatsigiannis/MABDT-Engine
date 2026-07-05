@@ -1,7 +1,7 @@
 """Tiger Motors topic processors.
 
 Three TopicProcessor subclasses that implement the deployment-specific
-routing rules described in JIM §3.2's algorithm and Table for the Tiger
+routing rules described in the JIM paper's "Communication Agent" subsection for the Tiger
 Motors deployment:
 
   - BarcodeProcessor:   scanner/+         (workstation barcode scans)

@@ -1,6 +1,6 @@
 """EventBus — internal publish/subscribe messaging with tick + shared table.
 
-Maps to JIM §3.2 "Event Bus". Carries broadcast and one-to-many traffic
+Maps to the JIM paper's "Event Bus" subsection. Carries broadcast and one-to-many traffic
 between DT agents. Also exposes:
 
   - A periodic `tick` event other agents can subscribe to (utilization
@@ -101,7 +101,7 @@ class EventBus:
                 return count
         return 0
 
-    # --- Shared lookup table (JIM §3.2 C24) ---
+    # --- Shared lookup table (JIM paper: Event Bus subsection) ---
 
     def get(self, key: str) -> Any:
         """Read a shared-table value. Returns None if unset."""

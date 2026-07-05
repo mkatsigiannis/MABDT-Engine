@@ -2,8 +2,8 @@
 REM ============================================================================
 REM MABDT Engine - Saturation Probe
 REM ============================================================================
-REM Extends the sensitivity grid upward in the rate dimension to find where
-REM the engine actually stops keeping up:
+REM Re-runs the two highest-rate columns of the sensitivity grid to probe
+REM where the engine stops keeping up:
 REM
 REM   N    in {15, 50, 150, 500, 1000}
 REM   rate in {3000, 10000}                 events/sec
@@ -11,9 +11,10 @@ REM
 REM = 10 runs at 60 seconds each plus per-run shutdown overhead.
 REM
 REM IMPORTANT: this script APPENDS to the existing bench\results\summary.csv
-REM rather than wiping it. Run this after run_sensitivity.bat so the saturation
-REM rows extend the 5x4 grid into a 5x6 grid. If summary.csv is from a
-REM different (incompatible) sweep, archive or delete it before running.
+REM rather than wiping it. run_sensitivity.bat already covers the full 5x6
+REM grid, so use this script to re-run only the {3000, 10000} cells without
+REM redoing the whole sweep. Archive or delete the matching rows in
+REM summary.csv first, or the appended rows will duplicate them.
 REM
 REM Prerequisites: same as run_sensitivity.bat (.venv ready, MQTT broker up,
 REM Mosquitto comfortable at the higher publish rates — for localhost

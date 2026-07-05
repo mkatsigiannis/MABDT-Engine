@@ -1,7 +1,7 @@
 # Documentation
 
 - [Architecture](architecture.md) — what `mabdt` is and how `tiger_motors_dt`
-  builds on it, mapped to JIM §3.
+  builds on it, mapped to the JIM paper's "Engine Architecture" section.
 - [`../examples/toy_line/README.md`](../examples/toy_line/README.md) — the
   smallest working deployment.
 

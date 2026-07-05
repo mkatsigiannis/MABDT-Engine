@@ -1,6 +1,6 @@
 """Toy assembly line — minimal end-to-end deployment built on mabdt.
 
-This example demonstrates the four engine components from JIM §3 with the
+This example demonstrates the four engine components from the JIM paper with the
 smallest realistic deployment: two workstations, a stream of cars that
 move through both stations, and a console summary at the end. No GUI,
 no MQTT broker — the InMemoryProtocol stands in for the physical layer.
@@ -87,7 +87,7 @@ class ToyCarAgent(mabdt.StateMachineAgent):
         self.finished = True
 
 
-# ----- Deployment-specific routing (the JIM §3.2 "rule-based pipeline") -----
+# ----- Deployment-specific routing (the JIM paper's "rule-based pipeline") --
 
 
 class ToyBarcodeProcessor(mabdt.TopicProcessor):
@@ -136,7 +136,7 @@ class ToyBarcodeProcessor(mabdt.TopicProcessor):
             car.receive({"type": "start"})
 
 
-# ----- Deployment Environment (JIM §3.1 orchestrator) -----------------------
+# ----- Deployment Environment (the simulation-environment orchestrator) -----
 
 
 class ToyLineEnvironment(mabdt.Environment):
@@ -176,7 +176,7 @@ class ToyLineEnvironment(mabdt.Environment):
         return ws
 
 
-# ----- Interface Layer (JIM §3.3) -------------------------------------------
+# ----- Interface Layer ------------------------------------------------------
 
 
 class ToyLineInterface(mabdt.SimulationInterface):

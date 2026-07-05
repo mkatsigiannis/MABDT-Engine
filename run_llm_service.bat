@@ -3,8 +3,9 @@ REM ============================================================================
 REM Tiger Motors Digital Twin - LLM Service Launcher
 REM ============================================================================
 REM Starts the standalone LLM service that bridges Ollama and the digital
-REM twin over MQTT. The service runs as a separate process per JIM §3.4
-REM C52 and can be stopped, restarted, or replaced with a different model
+REM twin over MQTT. The service runs as a separate process, following the
+REM JIM paper's independent-service pattern, and can be stopped, restarted,
+REM or replaced with a different model
 REM without touching the rest of the engine.
 REM
 REM Prerequisites:

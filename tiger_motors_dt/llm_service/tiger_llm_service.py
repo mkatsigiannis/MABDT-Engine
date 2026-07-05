@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Tiger Motors LLM service (separate process per JIM §3.4 C52).
+"""Tiger Motors LLM service (a separate process, following the JIM paper's
+independent-service pattern for LLM-assisted interaction).
 
 Run as either:
   python tiger_motors_dt/llm_service/tiger_llm_service.py

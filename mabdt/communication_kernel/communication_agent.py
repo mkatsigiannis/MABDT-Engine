@@ -1,6 +1,6 @@
 """CommunicationAgent — boundary between the physical layer and DT agents.
 
-Maps to JIM §3.2 "Communication Agent". Manages the MessagingProtocol
+Maps to the JIM paper's "Communication Agent" subsection. Manages the MessagingProtocol
 connection lifecycle, subscribes to the topics declared by registered
 TopicProcessor instances, and dispatches inbound messages through them.
 
@@ -145,7 +145,7 @@ class CommunicationAgent(Agent):
                         logger.error(
                             f"Processor {type(processor).__name__} failed on '{topic}': {e}"
                         )
-                    break  # one processor per topic match
+                    break  # this processor handles the message once even if several of its filters match
 
     def _outbound_forward(self, message: dict) -> None:
         """Forward a bus message to the messaging protocol.

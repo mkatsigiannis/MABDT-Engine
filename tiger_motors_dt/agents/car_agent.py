@@ -227,7 +227,7 @@ class CarAgent(StateMachineAgent):
         """Schedule automatic return from FaultDetected after a configurable delay."""
 
         def delayed_resolve():
-            delay = self.bus._config.get("performance", {}).get("state_stability_delay", 0.005)
+            delay = self.bus.get_config_value("performance", "state_stability_delay", 0.005)
             time.sleep(delay)
             if self.state == "FaultDetected":
                 self.resolve_fault()

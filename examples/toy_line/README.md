@@ -22,16 +22,16 @@ Workstation loads:
 
 ## What it shows
 
-The single file `main.py` walks through every engine component from JIM §3:
+The single file `main.py` walks through every engine component from the JIM paper:
 
-| Section | Engine concept (paper §) |
+| Section | Engine concept (JIM paper) |
 |---|---|
-| `ToyWorkstationAgent`, `ToyCarAgent` | DT agents with hierarchical statecharts (§3.1) |
-| `ToyBarcodeProcessor` | Rule-based routing pipeline (§3.2) |
-| `ToyLineEnvironment(mabdt.Environment)` | Environment orchestrator with declarative populations (§3.1) |
-| `mabdt.CommunicationAgent` + `mabdt.InMemoryProtocol` | Communication kernel (§3.2) |
-| `ToyLineInterface(mabdt.SimulationInterface)` | Interface layer with domain queries (§3.3) |
-| `run_synthetic_generator` | Stands in for the physical layer (§3.4 application path) |
+| `ToyWorkstationAgent`, `ToyCarAgent` | DT agents with hierarchical statecharts (Simulation Environment) |
+| `ToyBarcodeProcessor` | Rule-based routing pipeline (Communication Agent) |
+| `ToyLineEnvironment(mabdt.Environment)` | Environment orchestrator with declarative populations (Simulation Environment) |
+| `mabdt.CommunicationAgent` + `mabdt.InMemoryProtocol` | Communication kernel (Communication Kernel) |
+| `ToyLineInterface(mabdt.SimulationInterface)` | Interface layer with domain queries (Interface Layer) |
+| `run_synthetic_generator` | Stands in for the physical layer (Application Layer path) |
 
 The Tiger Motors deployment in this repository implements the same
 pattern at full scale (15 workstations, three-cell layout, real MQTT

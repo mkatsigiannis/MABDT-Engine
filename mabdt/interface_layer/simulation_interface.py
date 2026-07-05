@@ -1,6 +1,6 @@
 """SimulationInterface — thread-safe facade for external consumers.
 
-Maps to JIM §3.3 "Interface Layer". Exposes lifecycle methods (initialize,
+Maps to the JIM paper's "Interface Layer" section. Exposes lifecycle methods (initialize,
 start production, stop production, shutdown) and serves as the base class
 for deployment-specific facades that add domain query methods.
 

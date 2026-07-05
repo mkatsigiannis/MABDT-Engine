@@ -212,7 +212,7 @@ class InspectionStationAgent(StateMachineAgent):
         """
 
         def delayed_return():
-            delay = self.bus._config.get("performance", {}).get("state_stability_delay", 0.005)
+            delay = self.bus.get_config_value("performance", "state_stability_delay", 0.005)
             time.sleep(delay)
             try:
                 self.return_to_inspecting()

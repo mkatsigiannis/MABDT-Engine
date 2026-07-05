@@ -1,6 +1,6 @@
 """Agent base class — autonomous threaded agent with private inbox.
 
-Maps to JIM §3.1 "Agent Base Class". Each agent runs in its own daemon thread
+Maps to the JIM paper's "Simulation Environment" section. Each agent runs in its own daemon thread
 with a queue.Queue inbox. Other components deposit messages without blocking,
 and the agent processes them at its own pace. Pause/resume/stop control the
 lifecycle; messages accumulate in the inbox while paused.
@@ -84,7 +84,7 @@ class Agent:
         """Main event processing loop running in the background thread.
 
         While paused, the loop idles without draining the inbox so messages
-        accumulate until the agent resumes (matching JIM §3.1: "messages
+        accumulate until the agent resumes (matching the JIM paper: "messages
         accumulate in the queue but are not processed until the agent
         resumes"). Earlier drafts of this loop would `get()` then drop —
         that silently discarded events during pauses, contradicting the

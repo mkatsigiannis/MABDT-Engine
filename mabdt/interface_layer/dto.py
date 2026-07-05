@@ -1,6 +1,6 @@
 """DTO — frozen-dataclass base for read-only records.
 
-Maps to JIM §3.3 "Data Transfer Objects". All data crossing the interface
+Maps to the read-only records of the JIM paper's "Interface Layer" section. All data crossing the interface
 boundary is immutable. Deployments define one DTO per kind of DT agent
 (plus aggregate records for production metrics and system health) as a
 frozen dataclass that inherits from this base — though inheritance is

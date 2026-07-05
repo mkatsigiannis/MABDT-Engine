@@ -1,7 +1,7 @@
 """Smoke tests for mabdt.Agent.
 
 Covers the lifecycle (start/pause/resume/stop), inbox behavior under
-pause (the regression vs. JIM §3.1 that Phase 1 fixed), and the
+pause (the paper says paused agents accumulate, not drop), and the
 peer-discovery helpers.
 """
 
@@ -39,7 +39,7 @@ def test_agent_processes_incoming_messages():
 
 
 def test_pause_queues_messages_without_processing():
-    """JIM §3.1 says paused agents should accumulate messages, not drop."""
+    """The JIM paper says paused agents should accumulate messages, not drop."""
     bus = _short_bus()
     a = _Echo("a", bus)
     a.pause()

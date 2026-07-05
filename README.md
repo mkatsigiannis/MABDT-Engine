@@ -12,7 +12,7 @@ Manufacturing*.
 
 The repository is split into two Python packages:
 
-- **`mabdt/`** — the engine. Four components from JIM §3: simulation
+- **`mabdt/`** — the engine. Four components from the JIM paper's "Engine Architecture" section: simulation
   environment, communication kernel, interface layer, services.
   Deployment-agnostic. No Tiger Motors vocabulary.
 - **`tiger_motors_dt/`** — the Tiger Motors deployment built on `mabdt`:
@@ -123,7 +123,7 @@ A local MQTT broker on the configured host/port is required.
 
 ## Documentation
 
-- [`docs/architecture.md`](docs/architecture.md) — JIM §3 components mapped
+- [`docs/architecture.md`](docs/architecture.md) — the JIM paper's engine components mapped
   to code.
 - [`examples/toy_line/main.py`](examples/toy_line/main.py) — the smallest
   working deployment, with comments tying each piece back to the paper.

@@ -1,6 +1,7 @@
 """BarcodeProcessor — routes workstation barcode scans to car/workstation agents.
 
-Implements the four-route algorithm from JIM §4 Algorithm 1:
+Implements the deployment's four-route scanner dispatch (a deployment-specific
+processor in the sense of the JIM paper's "Communication Agent" subsection):
   Route 1: fault scanned while a car is at WS    -> send fault to that car
   Route 2: previously-unknown car id              -> create car + send busy/start
   Route 3: car already at this WS                 -> send done to WS and car

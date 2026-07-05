@@ -1,4 +1,4 @@
-"""Interface Layer (JIM §3.3).
+"""Interface Layer (JIM paper: "Interface Layer" section).
 
 The single boundary through which external consumers read the engine's state.
 Provides a stable API that delivers consistent snapshots and shields callers

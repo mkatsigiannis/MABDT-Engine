@@ -1,4 +1,4 @@
-"""Communication Kernel (JIM §3.2).
+"""Communication Kernel (JIM paper: "Communication Kernel" section).
 
 Two messaging systems:
   - CommunicationAgent: external boundary, bridges MQTT broker traffic to

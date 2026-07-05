@@ -10,12 +10,12 @@ which exercises every concept here at minimal scale.
 
 ```
 mabdt/                            engine, deployment-agnostic
-  agent/                            Agent, StateMachineAgent (§3.1)
-  simulation_environment/           Environment, AgentPopulation (§3.1)
+  agent/                            Agent, StateMachineAgent (Simulation Environment)
+  simulation_environment/           Environment, AgentPopulation (Simulation Environment)
   communication_kernel/             CommunicationAgent, TopicProcessor,
-                                    MessagingProtocol, EventBus (§3.2)
-  interface_layer/                  SimulationInterface, DTO, Query (§3.3)
-  services/                         IndependentService Protocol (§3.4)
+                                    MessagingProtocol, EventBus (Communication Kernel)
+  interface_layer/                  SimulationInterface, DTO, Query (Interface Layer)
+  services/                         IndependentService Protocol (Independent Services)
 
 tiger_motors_dt/                  reference deployment on top of mabdt
   agents/                           CarAgent, WorkstationAgent,
@@ -30,7 +30,7 @@ tiger_motors_dt/                  reference deployment on top of mabdt
   rag_system/, llm_service/         LLM chat with retrieval over DTOs
 ```
 
-## §3.1 Simulation Environment
+## Simulation Environment
 
 `mabdt.Environment` orchestrates an agent population's lifecycle. A
 deployment subclasses it and implements `_declare()`, where it registers
@@ -63,7 +63,7 @@ Agents subclass `mabdt.Agent` (a basic message loop) or
 `transitions` library, message dedup, a processing guard, and a pause-aware
 FIFO inbox).
 
-## §3.2 Communication Kernel
+## Communication Kernel
 
 `mabdt.CommunicationAgent` is the boundary between the physical layer and
 the rest of the engine. A subclass registers one or more `TopicProcessor`s;
@@ -99,7 +99,7 @@ a `{"topic", "payload", "qos"}` message on the `mqtt` bus topic, and the
 communication agent forwards it to the protocol. The rest of the engine
 never talks to the broker directly.
 
-## §3.3 Interface Layer
+## Interface Layer
 
 `mabdt.SimulationInterface` is a lock-protected facade over an
 `Environment`. External callers (GUI, CLI, RAG context collector, web APIs)
@@ -117,7 +117,7 @@ widgets call `iface.get_workstation(...)`, never reach into agent
 internals. An escape hatch (`get_environment()`) exists for the agent
 inspector debug panel but is not used in the normal display path.
 
-## §3.4 Services (application-layer sidecars)
+## Services (application-layer sidecars)
 
 `IndependentService` is a `typing.Protocol`, not an abstract base class,
 so PySide6 services that inherit `QObject` can satisfy it without MRO

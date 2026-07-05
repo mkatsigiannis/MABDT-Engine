@@ -1,10 +1,10 @@
 """StateMachineAgent — Agent with hierarchical statechart and message dedup.
 
-Maps to JIM §3.1 "Agent Base Class" extensions: duplicate-message detection
+Maps to the JIM paper's "Simulation Environment" section: duplicate-message detection
 (debouncing) and a standardized handle() flow that normalizes inbound
 messages and triggers the matching state-machine event.
 
-The §3.1 "processing guard" semantic (only one state transition at a time
+The paper's "processing guard" semantic (only one state transition at a time
 within an agent) is provided by the single-threaded inbox loop on the
 Agent base class: messages are pulled and dispatched serially in the
 agent's own thread, so two messages arriving in quick succession cannot

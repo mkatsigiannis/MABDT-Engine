@@ -92,7 +92,7 @@ class WorkstationAgent(StateMachineAgent):
         self.previous_green_state = "Production_GreenAndon_Idle"
 
         # Busy-state entry/exit dedup. Distinct from the framework's
-        # §3.1 processing guard (which is provided by the single-threaded
+        # paper's processing guard (which is provided by the single-threaded
         # inbox loop); this flag dedupes _start_processing / _stop_processing
         # in case the transitions library fires the entry/exit callback
         # twice for the same logical transition.
@@ -412,7 +412,7 @@ class WorkstationAgent(StateMachineAgent):
                 if self.state == "Production_GreenAndon_Idle":
                     self.busy()
 
-        delay = self.bus._config.get("performance", {}).get("state_stability_delay", 0.005)
+        delay = self.bus.get_config_value("performance", "state_stability_delay", 0.005)
         threading.Timer(delay, delayed_restore).start()
 
     # --- Action Implementations ---

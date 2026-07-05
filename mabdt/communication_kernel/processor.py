@@ -6,7 +6,7 @@ looks up the target agent, and emits the appropriate internal event.
 
 A manufacturing deployment, for example, may supply one processor per inbound
 topic family (e.g. barcode scanner, PLC bridge, inspection station), each
-implementing JIM §3.2's "rule-based routing pipeline" for that family. The
+implementing the JIM paper's "rule-based routing pipeline" for that family. The
 CommunicationAgent base iterates over registered processors at subscription
 time and dispatch time.
 """

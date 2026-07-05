@@ -1,6 +1,6 @@
 """Environment — declarative orchestrator for agent populations.
 
-Maps to JIM §3.1 "Environment Orchestrator". The engine holds a set of agent
+Maps to the JIM paper's "Simulation Environment" section. The engine holds a set of agent
 populations (one per DT-agent type), the communication agent that bridges
 the physical layer, and the production-tracking lifecycle.
 

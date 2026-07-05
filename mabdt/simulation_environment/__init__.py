@@ -1,4 +1,4 @@
-"""Simulation Environment (JIM §3.1).
+"""Simulation Environment (JIM paper: "Simulation Environment" section).
 
 Holds the agent populations, the start-up logic, and the bindings between
 the agents and the communication kernel.
