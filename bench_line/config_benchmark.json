@@ -1,0 +1,43 @@
+{
+  "facility": {
+    "cells": 3,
+    "total_workstations": 15,
+    "workstations_per_cell": 5
+  },
+  "mqtt": {
+    "host": "127.0.0.1",
+    "keepalive": 60,
+    "password": null,
+    "port": 8883,
+    "username": null
+  },
+  "barcode_scanner_service": {
+    "enabled": false,
+    "auto_start": false
+  },
+  "opc_ua_service": {
+    "enabled": false,
+    "auto_start": false
+  },
+  "performance": {
+    "agent_inbox_timeout": 0.1,
+    "eventbus_tick_interval": 1.0,
+    "gui_update_interval": 0.05,
+    "state_stability_delay": 0.005
+  },
+  "_comment_eventbus_tick_interval": "Bench-only override. The Tiger Motors deployment uses 0.01s (100 Hz) for fine-grained Andon utilization counters. At N=1000 that fanout (100,000 queue.put() calls/sec on the tick thread) saturates the GIL and starves paho's receive thread, so the engine never dispatches any MQTT message. The benchmark measures dispatch latency, not utilization-counter accuracy, so we run the tick at 1 Hz instead.",
+  "production": {
+    "target_cycle_time": 60,
+    "target_takt_time": 75
+  },
+  "topics": {
+    "inspection_station": "scanner/InspectionStation",
+    "led_prefix": "leds/",
+    "plc_prefix": "plc/",
+    "production_start": "production_start",
+    "scanner_prefix": "scanner/",
+    "ws_cycle_time_prefix": "ws_cycle_time/",
+    "inspection_pass_fail": "inspection_pass_fail",
+    "inspection_faults": "inspection_faults"
+  }
+}

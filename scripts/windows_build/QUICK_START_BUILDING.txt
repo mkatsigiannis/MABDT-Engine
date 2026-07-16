@@ -20,8 +20,8 @@ One-time setup
 
 1. Clone or copy the repository to a working directory:
 
-       git clone <repo-url> TigerMotorsDTPython
-       cd TigerMotorsDTPython
+       git clone <repo-url> MABDT-Engine
+       cd MABDT-Engine
 
 2. Create the virtual environment and install the editable Tiger deployment:
 

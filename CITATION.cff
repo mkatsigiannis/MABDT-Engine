@@ -11,12 +11,12 @@ authors:
     affiliation: "Auburn University"
 repository-code: "https://github.com/mkatsigiannis/MABDT-Engine"
 license: MIT
-version: 0.1.0
-date-released: "2026-06-10"
+version: 1.0.0
+date-released: "2026-07-14"
 identifiers:
   - type: doi
     value: 10.5281/zenodo.20755232
-    description: "Zenodo archive of the v0.1.0 release"
+    description: "Zenodo archive of this software"
 keywords:
   - digital twin
   - multi-agent systems

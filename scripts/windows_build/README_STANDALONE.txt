@@ -99,7 +99,7 @@ Troubleshooting
 Where to get a new build
 ------------------------
 
-The application's source lives in the TigerMotorsDTPython repository.
+The application's source lives in the MABDT-Engine repository.
 To produce a fresh dist\TigerMotorsDT\ folder from a checkout, run
 build_standalone.bat at the repo root (see QUICK_START_BUILDING.txt
 for the full procedure).

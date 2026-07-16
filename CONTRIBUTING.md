@@ -10,7 +10,7 @@ writing changes a reviewer can grasp without context.
 
 ```
 git clone <repo>
-cd TigerMotorsDTPython
+cd MABDT-Engine
 python -m venv .venv
 .venv\Scripts\activate            # Linux/macOS: source .venv/bin/activate
 pip install -e ".[tiger,dev]"
@@ -25,8 +25,8 @@ Running the same checks CI runs before you push saves a round trip:
 
 ```
 pytest                                          # 81 tests, ~20 s
-ruff check mabdt tiger_motors_dt tests examples bench
-black --check mabdt tiger_motors_dt tests examples bench
+ruff check .
+black --check .
 ```
 
 If `black --check` reports drift, run `black <paths>` to apply it. If

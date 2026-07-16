@@ -120,8 +120,16 @@ class CarAgent(StateMachineAgent):
     def create_message_key(self, event_type: str, message_dict: dict) -> str:
         """
         Create a unique key for message deduplication.
-        Consider workstation context for 'done' messages.
+
+        Workstation context is folded into both 'start' and 'done' keys so
+        that debouncing only ever drops a re-delivery of the SAME scan at
+        the SAME station. A bare 'start' key would make consecutive starts
+        at successive stations look like duplicates whenever they arrive
+        within the dedup window — the agent would silently skip stations
+        when the line moves faster than the window.
         """
+        if event_type == "start":
+            return f"{event_type}_{message_dict.get('ws_num')}"
         if event_type == "done":
             return f"{event_type}_{self.current_workstation}"
         return event_type
@@ -131,13 +139,11 @@ class CarAgent(StateMachineAgent):
         Process a normalized event with car-specific logic.
 
         Sync `self.current_workstation` from the `ws_num` field on the
-        event the agent is currently processing. The barcode processor
-        also writes `car.current_workstation` synchronously from the
-        comm thread (used by its Route 3 / Route 4 decision), so reading
-        that attribute here would race the comm thread under high load
-        and cause the inspection trigger to fire on an earlier event
-        than intended. Reading from the event payload keeps this check
-        consistent with the event the agent is actually handling.
+        event the agent is currently processing. After creation this
+        thread is the attribute's only writer: the barcode processor
+        routes from its own single-writer position map and does not
+        touch the attribute again, so the value here always reflects
+        the event stream this agent has actually handled.
 
         Intercepts 'done' at the final workstation to transition
         directly to inspection instead of back to WaitInQueue.

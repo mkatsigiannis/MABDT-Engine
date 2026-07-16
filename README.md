@@ -100,26 +100,42 @@ The suite covers `mabdt` core (agent, state machine, event bus,
 communication agent, protocol matching, environment, interface), the three
 Tiger processors, and the toy-line end-to-end smoke test.
 
-## Reproducing the JIM scaling experiment
+## Reproducing the evaluation experiments
 
-The scaling study reported in the paper lives in [`bench/`](bench/),
-self-contained and instrumentation-via-monkey-patch so the engine
-itself ships unencumbered. See [`bench/README.md`](bench/README.md) for
-the full sweep procedure and what each output column means.
+Two self-contained benchmark harnesses drive the evaluation. Both use
+instrumentation-via-monkey-patch so the engine itself ships
+unencumbered, and both require a local MQTT broker on the configured
+host/port plus `pip install -e ".[analysis]"` (psutil, matplotlib).
 
-Quick check:
+- [`bench_line/`](bench_line/) — the **paced-assembly-line scaling
+  study**: the line starts full, advances one station per cycle time T,
+  and the harness measures dispatch latency, throughput/saturation, and
+  assembly-line quantities (takt achievement, lead time vs ideal,
+  constant WIP) over an N × rate grid. See
+  [`bench_line/README.md`](bench_line/README.md).
+- [`bench_fidelity/`](bench_fidelity/) — the **stochastic-line fidelity
+  study**: a seeded discrete-event simulation of the line (Triangular
+  service times, takt-paced release, optional bottleneck) is replayed
+  over MQTT, and the digital twin's observations are graded against the
+  simulation's ground truth (paired lead times, exit variability,
+  per-station utilization, bottleneck localization). See
+  [`bench_fidelity/README.md`](bench_fidelity/README.md).
+
+Quick checks:
 
 ```
-python -m bench.benchmark --N 15 --rate 30 --duration 60
+python -m bench_line.benchmark --N 15 --cycle-time 0.5
+python -m bench_fidelity.benchmark --cars 25 --compression 100 --seed 7
 ```
 
-Full sensitivity grid (~50–70 minutes):
+Full sweeps: `bench_line\run_full_grid.bat` (~60–90 min per repetition)
+and `bench_fidelity\run_fidelity.bat` (~20 min);
+`python -m bench_line.verify_summary` audits every grid row against the
+line model's bookkeeping identities.
 
-```
-bench\run_sensitivity.bat
-```
-
-A local MQTT broker on the configured host/port is required.
+The earlier round-robin harness that produced the originally submitted
+scaling numbers is retained unchanged in the repository's `bench/`
+folder for reproducibility; `bench_line/` supersedes it.
 
 ## Documentation
 
@@ -127,8 +143,9 @@ A local MQTT broker on the configured host/port is required.
   to code.
 - [`examples/toy_line/main.py`](examples/toy_line/main.py) — the smallest
   working deployment, with comments tying each piece back to the paper.
-- [`bench/README.md`](bench/README.md) — the scaling-study harness used
-  for the JIM tables and plots.
+- [`bench_line/README.md`](bench_line/README.md) and
+  [`bench_fidelity/README.md`](bench_fidelity/README.md) — the two
+  evaluation harnesses (experiment design, summary-column reference).
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — branch, lint, test policy for
   external contributors.
 - The `mabdt/` and `tiger_motors_dt/` source files carry the rest. Module
@@ -159,7 +176,7 @@ software release:
   title   = {{MABDT Engine}: A Multi-Agent-Based Digital Twin Engine for Manufacturing Operations},
   author  = {Katsigiannis, Michail},
   year    = {2026},
-  version = {0.1.0},
+  version = {1.0.0},
   doi     = {10.5281/zenodo.20755232},
   url     = {https://github.com/mkatsigiannis/MABDT-Engine},
   license = {MIT}

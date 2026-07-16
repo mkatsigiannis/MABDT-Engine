@@ -16,7 +16,7 @@ deployment's TopicProcessors, DTOs, and Queries. See examples/toy_line/ for
 a minimal end-to-end deployment.
 """
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 
 from mabdt.agent.base import Agent
 from mabdt.agent.statemachine import StateMachineAgent

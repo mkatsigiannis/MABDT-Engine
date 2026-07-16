@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mabdt"
-version = "0.1.0"
+version = "1.0.0"
 description = "Multi-Agent-Based Digital Twin Engine for manufacturing operations"
 readme = "README.md"
 requires-python = ">=3.10"
